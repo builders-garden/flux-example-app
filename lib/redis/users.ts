@@ -2,7 +2,6 @@ import { getRedisClient } from ".";
 
 export interface User {
   address: string;
-  email: string;
   tier: UserTier;
 }
 
@@ -12,7 +11,7 @@ export enum UserTier {
   GOLD = "gold",
 }
 
-export const createUser = async (address: string, email: string) => {
+export const createUser = async (address: string) => {
   const redis = getRedisClient();
   const user = await redis.hgetall(`user:${address.toLowerCase()}`);
   if (user) {
@@ -20,7 +19,6 @@ export const createUser = async (address: string, email: string) => {
   }
   const newUser = await redis.hset(`user:${address.toLowerCase()}`, {
     address,
-    email,
     tier: UserTier.BRONZE,
   });
   return newUser;

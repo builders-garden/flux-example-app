@@ -9,10 +9,10 @@ export interface FluxPaymentSuccessfulEventPayload {
 }
 
 export enum FluxEventType {
-  PAYMENT_SUCCESSFUL = "payment_successful",
-  CUSTOMER_CREATED = "customer_created",
-  SUBSCRIPTION_CREATED = "subscription_created",
-  SUBSCRIPTION_CANCELLED = "subscription_cancelled",
+  PAYMENT_SUCCESSFUL = "PAYMENT_SUCCESSFUL",
+  CUSTOMER_CREATED = "CUSTOMER_CREATED",
+  SUBSCRIPTION_CREATED = "SUBSCRIPTION_CREATED",
+  SUBSCRIPTION_CANCELLED = "SUBSCRIPTION_CANCELLED",
 }
 
 export interface FluxWebhookEventData {

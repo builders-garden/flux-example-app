@@ -28,12 +28,14 @@ export const POST = async (req: NextRequest) => {
   }
 
   const { metadata, eventData } = body as FluxWebhookEventData;
-  // console.log({ metadata, eventData });
+  console.log({ metadata, eventData });
   if (metadata.eventType === FluxEventType.PAYMENT_SUCCESSFUL) {
     if (eventData.productId === FLUX_TIER_SILVER_PRODUCT_ID) {
+      console.log("Updating user to silver tier");
       await updateUser(eventData.customerAddress, { tier: UserTier.SILVER });
     }
     if (eventData.productId === FLUX_TIER_GOLD_PRODUCT_ID) {
+      console.log("Updating user to gold tier");
       await updateUser(eventData.customerAddress, { tier: UserTier.GOLD });
     }
   }

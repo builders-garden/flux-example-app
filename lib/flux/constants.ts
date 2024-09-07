@@ -9,5 +9,6 @@ wQIDAQAB
 -----END PUBLIC KEY-----
 `;
 
-export const FLUX_TIER_SILVER_PRODUCT_ID = "prod_OaI1b3B0z0Y3yY";
-export const FLUX_TIER_GOLD_PRODUCT_ID = "prod_OaI1b3B0z0Y3yY";
+export const FLUX_TIER_SILVER_PRODUCT_ID =
+  "4c3711e0-eedc-4275-b757-5bf0add9aeba";
+export const FLUX_TIER_GOLD_PRODUCT_ID = "b9d636e4-1940-426d-aac2-ef9e5ac315a8";
