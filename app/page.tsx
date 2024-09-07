@@ -7,7 +7,7 @@ import { UserTier } from "@/lib/redis/users";
 import { shortenAddress } from "@/lib/utils";
 import { Button } from "@nextui-org/react";
 import { useLogin, usePrivy } from "@privy-io/react-auth";
-import { RefreshCcw } from "lucide-react";
+import { Power, RefreshCcw } from "lucide-react";
 
 export default function Home() {
   const { ready, authenticated } = usePrivy();
@@ -69,14 +69,26 @@ export default function Home() {
                   <TierChip tier={user.tier} />
                 </div>
               </div>
-              <Button
-                size="sm"
-                className="bg-black text-white w-fit"
-                onClick={() => updateUser(UserTier.BRONZE)}
-              >
-                <RefreshCcw className="w-4 h-4 mr-2" />
-                Reset tier
-              </Button>
+              <div className="flex flex-row gap-2">
+                <Button
+                  size="sm"
+                  variant="solid"
+                  className="bg-black text-white w-fit"
+                  onClick={() => refetch()}
+                >
+                  <RefreshCcw className="w-4 h-4 mr-2" />
+                  Refresh user
+                </Button>
+                <Button
+                  size="sm"
+                  variant="bordered"
+                  className="bg-transparent border-2 border-black text-black w-fit"
+                  onClick={() => updateUser(UserTier.BRONZE)}
+                >
+                  <Power className="w-4 h-4 mr-2" />
+                  Reset tier
+                </Button>
+              </div>
             </div>
           </div>
         )}
