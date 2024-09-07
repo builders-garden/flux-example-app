@@ -1,5 +1,11 @@
 import { getRedisClient } from ".";
 
+export interface User {
+  address: string;
+  email: string;
+  tier: UserTier;
+}
+
 export enum UserTier {
   BRONZE = "bronze",
   SILVER = "silver",
