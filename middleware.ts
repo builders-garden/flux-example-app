@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import { verifyAuthToken } from "./lib/privy";
-import { validateFluxWebhook } from "./lib/flux";
+import { validateFluxWebhookEvent } from "./lib/flux";
 
 export const config = {
   matcher: "/api/:function*",
@@ -24,7 +24,7 @@ export async function middleware(req: NextRequest) {
       );
     }
     const body = await req.json();
-    const isValid = validateFluxWebhook(body, signature);
+    const isValid = validateFluxWebhookEvent(body, signature);
     if (!isValid) {
       return NextResponse.json(
         { success: false, message: "Invalid flux signature" },

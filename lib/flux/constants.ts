@@ -1,6 +1,4 @@
-import { createPublicKey, createVerify } from "crypto";
-
-const FLUX_PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
+export const FLUX_WEBHOOK_PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApItGFqrPP65bhoIXh5Aj
 ruqLxUljdcwESTSJJllDtwXeHJcxf6qBXWmK3mPMsXuCsCRY8cOKAbqzrylWohoG
 wC+de3w7FMUVH+UH8B+s6OZVzGXKhYnhlq6IVJaw7ZHTZDQUBOtQIYA6pd5YYIXv
@@ -11,9 +9,5 @@ wQIDAQAB
 -----END PUBLIC KEY-----
 `;
 
-export const validateFluxWebhook = (data: unknown, signature: string) => {
-  const publicKey = createPublicKey(FLUX_PUBLIC_KEY);
-  const verify = createVerify("sha256");
-  verify.update(JSON.stringify(data));
-  return verify.verify(publicKey, signature, "base64");
-};
+export const FLUX_TIER_SILVER_PRODUCT_ID = "prod_OaI1b3B0z0Y3yY";
+export const FLUX_TIER_GOLD_PRODUCT_ID = "prod_OaI1b3B0z0Y3yY";
