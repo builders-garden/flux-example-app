@@ -1,5 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import { verifyAuthToken } from "./lib/privy";
+import { validateFluxWebhook } from "./lib/flux";
 
 export const config = {
   matcher: "/api/:function*",
@@ -8,6 +9,31 @@ export const config = {
 export async function middleware(req: NextRequest) {
   if (req.url.includes("/api/public/")) {
     // If the request is for a public endpoint, continue processing the request
+    return NextResponse.next();
+  }
+
+  if (req.url.includes("/api/flux/webhooks")) {
+    const signature = req.headers.get("x-flux-signature");
+    if (!signature) {
+      return NextResponse.json(
+        { success: false, message: "Missing flux signature" },
+        {
+          status: 401,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+    const body = await req.json();
+    const isValid = validateFluxWebhook(body, signature);
+    if (!isValid) {
+      return NextResponse.json(
+        { success: false, message: "Invalid flux signature" },
+        {
+          status: 401,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
     return NextResponse.next();
   }
 
