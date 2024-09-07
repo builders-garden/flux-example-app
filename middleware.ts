@@ -1,6 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
 import { verifyAuthToken } from "./lib/privy";
-import { validateFluxWebhookEvent } from "./lib/flux";
 
 export const config = {
   matcher: "/api/:function*",
@@ -17,17 +16,6 @@ export async function middleware(req: NextRequest) {
     if (!signature) {
       return NextResponse.json(
         { success: false, message: "Missing flux signature" },
-        {
-          status: 401,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-    }
-    const body = await req.json();
-    const isValid = validateFluxWebhookEvent(body, signature);
-    if (!isValid) {
-      return NextResponse.json(
-        { success: false, message: "Invalid flux signature" },
         {
           status: 401,
           headers: { "Content-Type": "application/json" },

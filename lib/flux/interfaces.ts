@@ -2,6 +2,7 @@ export interface FluxPaymentSuccessfulEventPayload {
   hash: string;
   amount: string;
   customerId: string;
+  customerAddress: string;
   productId: string;
   timestamp: Date;
   userId: string;
@@ -10,6 +11,8 @@ export interface FluxPaymentSuccessfulEventPayload {
 export enum FluxEventType {
   PAYMENT_SUCCESSFUL = "payment_successful",
   CUSTOMER_CREATED = "customer_created",
+  SUBSCRIPTION_CREATED = "subscription_created",
+  SUBSCRIPTION_CANCELLED = "subscription_cancelled",
 }
 
 export interface FluxWebhookEventData {
@@ -19,5 +22,5 @@ export interface FluxWebhookEventData {
     eventType: FluxEventType;
     timestamp: string;
   };
-  payload: FluxPaymentSuccessfulEventPayload;
+  eventData: FluxPaymentSuccessfulEventPayload;
 }
